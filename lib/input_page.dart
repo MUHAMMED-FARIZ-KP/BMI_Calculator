@@ -1,8 +1,11 @@
+import 'package:bmi_calculator/ResultPage.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'icon_details.dart';
 import 'reusable_card.dart';
 import 'constants.dart';
+import 'Extracted_Buttons.dart';
 
 class InputPage extends StatefulWidget {
   const InputPage({super.key});
@@ -36,7 +39,7 @@ class _InputPageState extends State<InputPage> {
 
   int height = 180;
   int weight = 45;
-  int age=15;
+  int age = 15;
 
   @override
   Widget build(BuildContext context) {
@@ -219,39 +222,18 @@ class _InputPageState extends State<InputPage> {
               ],
             ),
           ),
-          Container(
-            child: Center(
-              child: Text("CALCULATE",
-              style: kbottomContainerTextStyle,),
-            ),
-            margin: EdgeInsets.only(top: 10.0),
-            color: kBottomContainerColor,
-            width: double.infinity,
-            height: kBottomContainerHeight,
+          BottomButton(
+            buttonName: 'CALCULATE ',
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ResultScreen(),
+                ),
+              );
+            },
           ),
         ],
-      ),
-    );
-  }
-}
-
-class RoundIconButton extends StatelessWidget {
-  RoundIconButton({required this.icon, required this.onPressed});
-
-  final IconData icon;
-  final VoidCallback onPressed;
-
-  @override
-  Widget build(BuildContext context) {
-    return RawMaterialButton(
-      child: Icon(icon),
-      onPressed: onPressed, // Call the passed callback
-      elevation: 6.0,
-      shape: CircleBorder(),
-      fillColor: Color(0xFF4C4F5E),
-      constraints: BoxConstraints.tightFor(
-        width: 56.0,
-        height: 56.0,
       ),
     );
   }
