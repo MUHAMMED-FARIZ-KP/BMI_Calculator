@@ -6,7 +6,13 @@ import 'package:flutter/widgets.dart';
 import 'reusable_card.dart';
 
 class ResultScreen extends StatelessWidget {
-  const ResultScreen({super.key});
+  ResultScreen(
+      {required this.bmiResult,
+      required this.actualbmiResultValue,
+      required this.interpretation});
+  final String bmiResult;
+  final String actualbmiResultValue;
+  final String interpretation;
 
   @override
   Widget build(BuildContext context) {
@@ -33,18 +39,18 @@ class ResultScreen extends StatelessWidget {
             child: ReusableCard(
               kolor: Color(0xFF1D1F33),
               cardChild: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Text(
-                    "NORMAL",
+                    bmiResult,
                     style: kNormalTextStyle,
                   ),
                   Text(
-                    '15',
+                    actualbmiResultValue,
                     style: kLargeTextStyle,
                   ),
                   Text(
-                    'Your BMI is Normal,You can eat whatever you want',
+                    interpretation,
                     style: kInterpretationStyle,
                     textAlign: TextAlign.center,
                   ),
@@ -52,7 +58,9 @@ class ResultScreen extends StatelessWidget {
               ),
             ),
           ),
-          BottomButton(buttonName: "CALCULATE AGAIN", onPressed: Navigator.of(context).pop)
+          BottomButton(
+              buttonName: "CALCULATE AGAIN",
+              onPressed: Navigator.of(context).pop)
         ],
       ),
     );

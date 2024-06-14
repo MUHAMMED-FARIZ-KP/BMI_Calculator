@@ -1,3 +1,4 @@
+import 'package:bmi_calculator/Calculator.dart';
 import 'package:bmi_calculator/ResultPage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -6,6 +7,7 @@ import 'icon_details.dart';
 import 'reusable_card.dart';
 import 'constants.dart';
 import 'Extracted_Buttons.dart';
+
 
 class InputPage extends StatefulWidget {
   const InputPage({super.key});
@@ -225,10 +227,17 @@ class _InputPageState extends State<InputPage> {
           BottomButton(
             buttonName: 'CALCULATE ',
             onPressed: () {
+
+              Calculator calc=Calculator(height: height, weight: weight);
+
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => ResultScreen(),
+                  builder: (context) => ResultScreen(
+                    actualbmiResultValue: calc.calculateBMI(),
+                    bmiResult: calc.getResult(),
+                    interpretation: calc.getInterpretation() ,
+                  ),
                 ),
               );
             },
